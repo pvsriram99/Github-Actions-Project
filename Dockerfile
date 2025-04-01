@@ -10,9 +10,9 @@ RUN mkdir -p $APP_HOME
 # Debugging step to list directory structure
 RUN ls -R /usr/src/
 
-# Copy the .jar file to the app directory
-COPY app/*.jar $APP_HOME/app.jar
+# Copy the .jar file to the app directory (Fixed COPY command)
+COPY app/ /usr/src/app/
 
 WORKDIR $APP_HOME
 
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "bankapp-0.0.1-SNAPSHOT.jar"]
