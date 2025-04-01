@@ -6,11 +6,8 @@ on:
   
 
 jobs:
-  build:
-
+  compile:
     runs-on: self-hosted
-      
-
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -23,5 +20,13 @@ jobs:
       run: mvn compile
     - name: test with Maven
       run : mvn test
+
+  security-checks:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v4
+    - name: Trivy Scan
+      run : trivy fs --format html --output trivy-report.html
+    
       
    
