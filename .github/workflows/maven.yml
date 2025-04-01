@@ -28,7 +28,7 @@ jobs:
     - name: Trivy Scan  #will scan for vulnarabilities
       run : trivy fs --format table --output trivy-report.html .
     - name: Git leaks scan  # willscan for any sensitive data that is passes in source code
-      run : gitleaks source .
+      run : gitleaks detect .
     
       
    
