@@ -2,17 +2,17 @@ FROM eclipse-temurin:17-jdk-alpine
 
 EXPOSE 8080
 
-ENV APP_HOME=/usr/src/app
+ENV APP_HOME=/usr/src/
 
 # Create the app directory if it does not exist
-RUN mkdir -p $APP_HOME
+#RUN mkdir -p $APP_HOME
 
 # Debugging step to list directory structure
 RUN ls -R /usr/src/
 
 # Copy the .jar file to the app directory (Fixed COPY command)
-COPY app/ /usr/src/app/
+COPY app/*.jar /usr/src/
 
 WORKDIR $APP_HOME
 
-CMD ["java", "-jar", "bankapp-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "*.jar"]
