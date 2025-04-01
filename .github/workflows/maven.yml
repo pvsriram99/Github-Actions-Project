@@ -31,6 +31,7 @@ jobs:
       
   test:
     runs-on: self-hosted
+    needs: security-checks
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -63,6 +64,14 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}  
+    - name: SonarQube Quality Gate check
+      id: sonarqube-quality-gate-check
+      uses: sonarsource/sonarqube-quality-gate-action@master
+      with:
+        pollingTimeoutSec: 600
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }} #OPTIONAL
       
     
       
